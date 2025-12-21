@@ -8,6 +8,17 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+
+Route::get('/products', function () {
+    return view('products');
+})->name('products');
+
+
+
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
