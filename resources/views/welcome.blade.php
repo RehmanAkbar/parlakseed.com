@@ -5,192 +5,257 @@
 @section('styles')
     <style>
         /* ============================================
-           Hero Section
-           ============================================ */
-        .hero {
+               HOME PAGE STYLES - Properly Scoped
+               ============================================ */
+
+        /* Hero Section */
+        .home-hero {
             position: relative;
-            min-height: 100vh;
-            padding: 140px 0 80px;
-            background: linear-gradient(180deg, var(--color-warm-white) 0%, var(--color-cream) 100%);
+            min-height: calc(100vh - var(--header-height) - var(--header-height));
+            padding: 5rem 0 6rem;
+            background: linear-gradient(165deg, var(--color-warm-white) 0%, var(--color-cream) 60%, rgba(74, 124, 89, 0.08) 100%);
             overflow: hidden;
+            display: flex;
+            align-items: center;
         }
 
-        .hero-bg {
+        .home-hero .hero-bg {
             position: absolute;
             inset: 0;
             pointer-events: none;
         }
 
-        .hero-shape {
+        .home-hero .hero-shape {
             position: absolute;
             border-radius: 50%;
-            opacity: 0.6;
+            filter: blur(60px);
         }
 
-        .hero-shape-1 {
-            top: -15%;
-            right: -8%;
-            width: 650px;
-            height: 650px;
-            background: radial-gradient(circle, rgba(74, 124, 89, 0.12) 0%, transparent 70%);
+        .home-hero .hero-shape-1 {
+            top: -20%;
+            right: -10%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(74, 124, 89, 0.15) 0%, transparent 60%);
+            animation: morphShape 15s ease-in-out infinite;
         }
 
-        .hero-shape-2 {
-            bottom: -25%;
-            left: -12%;
-            width: 550px;
-            height: 550px;
-            background: radial-gradient(circle, rgba(196, 120, 92, 0.1) 0%, transparent 70%);
+        .home-hero .hero-shape-2 {
+            bottom: -30%;
+            left: -15%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(196, 120, 92, 0.12) 0%, transparent 60%);
+            animation: morphShape 12s ease-in-out infinite reverse;
         }
 
-        .hero-shape-3 {
-            top: 35%;
-            left: 25%;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(139, 111, 71, 0.06) 0%, transparent 70%);
+        .home-hero .hero-shape-3 {
+            top: 40%;
+            left: 20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 168, 75, 0.08) 0%, transparent 60%);
         }
 
-        .hero-inner {
+        @keyframes morphShape {
+
+            0%,
+            100% {
+                transform: scale(1) translate(0, 0);
+            }
+
+            50% {
+                transform: scale(1.05) translate(5px, -5px);
+            }
+        }
+
+        .home-hero .hero-inner {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 3rem;
             align-items: center;
-            min-height: calc(100vh - 220px);
-        }
-
-        .hero-content {
             position: relative;
             z-index: 2;
         }
 
-        .hero-badge {
+        .home-hero .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            background: rgba(45, 90, 61, 0.1);
+            gap: 0.6rem;
+            background: linear-gradient(135deg, rgba(45, 90, 61, 0.12) 0%, rgba(74, 124, 89, 0.08) 100%);
             color: var(--color-primary);
-            padding: 0.5rem 1.25rem;
+            padding: 0.6rem 1.4rem;
             border-radius: var(--radius-full);
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(45, 90, 61, 0.15);
+            margin-bottom: 1.75rem;
+            border: 1px solid rgba(45, 90, 61, 0.18);
         }
 
-        .hero-badge svg {
+        .home-hero .hero-badge svg {
             width: 18px;
             height: 18px;
-            fill: var(--color-primary);
+            stroke: var(--color-primary);
+            fill: none;
+            stroke-width: 2;
         }
 
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 3.75rem);
+        .home-hero .hero-title {
+            font-size: clamp(2.75rem, 5.5vw, 4rem);
             font-weight: 800;
-            line-height: 1.12;
+            line-height: 1.08;
             margin-bottom: 1.5rem;
             color: var(--color-charcoal);
         }
 
-        .hero-description {
-            font-size: 1.15rem;
-            color: var(--color-charcoal-light);
-            opacity: 0.85;
-            max-width: 520px;
-            margin-bottom: 2rem;
-            line-height: 1.75;
+        .home-hero .hero-title .highlight {
+            position: relative;
+            display: inline-block;
         }
 
-        .hero-buttons {
+        .home-hero .hero-title .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            right: 0;
+            height: 12px;
+            background: linear-gradient(135deg, rgba(196, 120, 92, 0.35) 0%, rgba(212, 168, 75, 0.25) 100%);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        .home-hero .hero-description {
+            font-size: 1.2rem;
+            color: var(--color-charcoal-light);
+            max-width: 540px;
+            margin-bottom: 2.25rem;
+            line-height: 1.8;
+        }
+
+        .home-hero .hero-buttons {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 1.25rem;
             margin-bottom: 3rem;
         }
 
-        .hero-stats {
+        .home-hero .hero-buttons .btn {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+        }
+
+        .home-hero .hero-buttons .btn-primary {
+            box-shadow: 0 8px 30px rgba(45, 90, 61, 0.3);
+        }
+
+        .home-hero .hero-stats {
             display: flex;
             flex-wrap: wrap;
-            gap: 2.5rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(45, 90, 61, 0.1);
+            gap: 3rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(45, 90, 61, 0.12);
         }
 
-        .stat-item {
-            text-align: left;
-        }
-
-        .stat-number {
-            display: block;
+        .home-hero .stat-number {
+            display: flex;
+            align-items: baseline;
+            gap: 0.2rem;
             font-family: var(--font-display);
-            font-size: 2.5rem;
+            font-size: 2.75rem;
             font-weight: 700;
-            color: var(--color-primary);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             line-height: 1;
         }
 
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--color-charcoal-light);
-            opacity: 0.7;
+        .home-hero .stat-number .suffix {
+            font-size: 1.5rem;
         }
 
-        .stat-divider {
+        .home-hero .stat-label {
+            font-size: 0.9rem;
+            color: var(--color-charcoal-light);
+            margin-top: 0.35rem;
+        }
+
+        .home-hero .stat-divider {
             width: 1px;
-            background: rgba(45, 90, 61, 0.15);
+            background: linear-gradient(180deg, transparent 0%, rgba(45, 90, 61, 0.2) 50%, transparent 100%);
             align-self: stretch;
         }
 
         /* Hero Visual */
-        .hero-visual {
+        .home-hero .hero-visual {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .hero-image-container {
+        .home-hero .hero-image-container {
             position: relative;
             width: 100%;
-            max-width: 500px;
+            max-width: 520px;
         }
 
-        .hero-circle-main {
+        .home-hero .hero-circle-main {
             position: relative;
-            width: 380px;
-            height: 380px;
+            width: 360px;
+            height: 360px;
             margin: 0 auto;
-            background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+            background: linear-gradient(145deg, var(--color-primary-light) 0%, var(--color-primary) 50%, var(--color-primary-dark) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             animation: float 6s ease-in-out infinite;
-            box-shadow: 0 30px 60px rgba(45, 90, 61, 0.25);
+            box-shadow: 0 40px 80px rgba(45, 90, 61, 0.25);
         }
 
-        .hero-circle-accent {
+        .home-hero .hero-circle-ring {
             position: absolute;
-            width: 130px;
-            height: 130px;
-            bottom: 10px;
-            right: 5%;
-            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+            width: 440px;
+            height: 440px;
+            border: 2px dashed rgba(45, 90, 61, 0.15);
+            border-radius: 50%;
+            animation: spin 30s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .home-hero .hero-circle-accent {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            bottom: 30px;
+            right: 12%;
+            background: linear-gradient(145deg, var(--color-accent-light) 0%, var(--color-accent) 100%);
             border-radius: 50%;
             animation: float 5s ease-in-out infinite reverse;
-            box-shadow: 0 15px 40px rgba(196, 120, 92, 0.3);
+            box-shadow: 0 20px 50px rgba(196, 120, 92, 0.35);
         }
 
-        .hero-circle-small {
+        .home-hero .hero-circle-small {
             position: absolute;
-            width: 70px;
-            height: 70px;
-            top: 20px;
-            right: 15%;
-            background: linear-gradient(135deg, var(--color-secondary) 0%, #a68a5b 100%);
+            width: 65px;
+            height: 65px;
+            top: 30px;
+            right: 18%;
+            background: linear-gradient(145deg, #a68a5b 0%, var(--color-secondary) 100%);
             border-radius: 50%;
             animation: float 4s ease-in-out infinite;
-            box-shadow: 0 10px 30px rgba(139, 111, 71, 0.3);
+            box-shadow: 0 15px 40px rgba(139, 111, 71, 0.35);
         }
 
         @keyframes float {
@@ -205,26 +270,14 @@
             }
         }
 
-        .plant-svg {
-            width: 200px;
-            height: 200px;
+        .home-hero .plant-svg {
+            width: 170px;
+            height: 170px;
         }
 
-        .plant-svg .leaf {
+        .home-hero .plant-svg .leaf {
             transform-origin: bottom center;
             animation: sway 3s ease-in-out infinite;
-        }
-
-        .plant-svg .leaf-1 {
-            animation-delay: 0s;
-        }
-
-        .plant-svg .leaf-2 {
-            animation-delay: 0.5s;
-        }
-
-        .plant-svg .leaf-3 {
-            animation-delay: 1s;
         }
 
         @keyframes sway {
@@ -235,50 +288,50 @@
             }
 
             50% {
-                transform: rotate(3deg);
+                transform: rotate(4deg);
             }
         }
 
         /* Floating Cards */
-        .floating-card {
+        .home-hero .floating-card {
             position: absolute;
             background: white;
-            padding: 0.85rem 1.35rem;
+            padding: 0.85rem 1.2rem;
             border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 10px 40px rgba(45, 90, 61, 0.12);
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.7rem;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             z-index: 10;
-            animation: cardFloat 5s ease-in-out infinite;
+            border: 1px solid rgba(45, 90, 61, 0.06);
         }
 
-        .floating-card svg {
-            width: 24px;
-            height: 24px;
+        .home-hero .floating-card svg {
+            width: 20px;
+            height: 20px;
             stroke: var(--color-primary);
             fill: none;
             stroke-width: 2;
         }
 
-        .card-1 {
-            top: 8%;
-            left: -5%;
-            animation-delay: 0s;
+        .home-hero .card-1 {
+            top: 10%;
+            left: 0;
+            animation: cardFloat 5s ease-in-out infinite;
         }
 
-        .card-2 {
+        .home-hero .card-2 {
             bottom: 28%;
-            left: -10%;
-            animation-delay: 1s;
+            left: -5%;
+            animation: cardFloat 6s ease-in-out infinite 1s;
         }
 
-        .card-3 {
+        .home-hero .card-3 {
             top: 22%;
-            right: -5%;
-            animation-delay: 2s;
+            right: 0;
+            animation: cardFloat 5.5s ease-in-out infinite 2s;
         }
 
         @keyframes cardFloat {
@@ -293,145 +346,44 @@
             }
         }
 
-        /* Scroll Indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
+        /* Features Section */
+        .home-features {
+            background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-warm-white) 100%);
+            padding: 6rem 0;
         }
 
-        .scroll-indicator a {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--color-primary);
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator svg {
-            width: 28px;
-            height: 28px;
-            stroke: var(--color-primary);
-            fill: none;
-            stroke-width: 2;
-        }
-
-        @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateY(0);
-            }
-
-            40% {
-                transform: translateY(10px);
-            }
-
-            60% {
-                transform: translateY(5px);
-            }
-        }
-
-        /* ============================================
-           Trusted Section
-           ============================================ */
-        .trusted-section {
-            padding: 3rem 0;
-            background: var(--color-cream-dark);
-            border-top: 1px solid rgba(45, 90, 61, 0.06);
-            border-bottom: 1px solid rgba(45, 90, 61, 0.06);
-        }
-
-        .trusted-title {
-            text-align: center;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--color-charcoal-light);
-            opacity: 0.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .trusted-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 3rem;
-        }
-
-        .partner-logo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.4rem;
-            color: var(--color-charcoal-light);
-            opacity: 0.5;
-            transition: var(--transition-base);
-        }
-
-        .partner-logo:hover {
-            opacity: 1;
-            color: var(--color-primary);
-        }
-
-        .partner-logo svg {
-            width: 32px;
-            height: 32px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 1.5;
-        }
-
-        .partner-logo span {
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-
-        /* ============================================
-           Features Section
-           ============================================ */
-        .features-section {
-            background: var(--color-warm-white);
-        }
-
-        .features-grid {
+        .home-features .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
 
-        .feature-card {
-            background: var(--color-cream);
+        .home-features .feature-card {
+            background: white;
             padding: 2rem;
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-xl);
             border: 1px solid rgba(45, 90, 61, 0.06);
-            transition: var(--transition-base);
+            transition: all 0.4s ease;
         }
 
-        .feature-card:hover {
+        .home-features .feature-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-            border-color: transparent;
+            box-shadow: 0 20px 50px rgba(45, 90, 61, 0.12);
         }
 
-        .feature-icon {
-            width: 64px;
-            height: 64px;
+        .home-features .feature-icon {
+            width: 65px;
+            height: 65px;
             background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 1.25rem;
-            transition: var(--transition-base);
+            transition: transform 0.4s ease;
         }
 
-        .feature-icon svg {
+        .home-features .feature-icon svg {
             width: 28px;
             height: 28px;
             stroke: white;
@@ -439,43 +391,43 @@
             stroke-width: 2;
         }
 
-        .feature-icon.green {
+        .home-features .feature-icon.green {
             background: linear-gradient(135deg, #4a7c59 0%, #6b9b7a 100%);
         }
 
-        .feature-icon.gold {
+        .home-features .feature-icon.gold {
             background: linear-gradient(135deg, #d4a84b 0%, #e6c06a 100%);
         }
 
-        .feature-icon.blue {
+        .home-features .feature-icon.blue {
             background: linear-gradient(135deg, #5c8dc4 0%, #7ba8d6 100%);
         }
 
-        .feature-icon.purple {
+        .home-features .feature-icon.purple {
             background: linear-gradient(135deg, #8b6fb0 0%, #a890c4 100%);
         }
 
-        .feature-icon.orange {
+        .home-features .feature-icon.orange {
             background: linear-gradient(135deg, #c4785c 0%, #d69578 100%);
         }
 
-        .feature-card:hover .feature-icon {
+        .home-features .feature-card:hover .feature-icon {
             transform: scale(1.1) rotate(-5deg);
         }
 
-        .feature-card h3 {
+        .home-features .feature-card h3 {
             font-size: 1.2rem;
             margin-bottom: 0.75rem;
         }
 
-        .feature-card p {
+        .home-features .feature-card p {
             color: var(--color-charcoal-light);
-            opacity: 0.8;
             margin-bottom: 1rem;
             font-size: 0.95rem;
+            line-height: 1.7;
         }
 
-        .feature-link {
+        .home-features .feature-link {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -484,12 +436,11 @@
             font-size: 0.9rem;
         }
 
-        .feature-link:hover {
+        .home-features .feature-link:hover {
             gap: 0.75rem;
-            color: var(--color-primary-dark);
         }
 
-        .feature-link svg {
+        .home-features .feature-link svg {
             width: 16px;
             height: 16px;
             stroke: currentColor;
@@ -497,75 +448,80 @@
             stroke-width: 2;
         }
 
-        /* ============================================
-           Categories Section
-           ============================================ */
-        .categories-section {
+        /* Categories Section */
+        .home-categories {
             background: var(--color-cream);
+            padding: 6rem 0;
         }
 
-        .categories-grid {
+        .home-categories .categories-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
         }
 
-        .category-card {
+        .home-categories .category-card {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 3rem 1.5rem;
-            border-radius: var(--radius-lg);
+            padding: 2.5rem 1.5rem;
+            border-radius: var(--radius-xl);
             position: relative;
             overflow: hidden;
-            min-height: 220px;
+            min-height: 200px;
             color: white;
             text-decoration: none;
-            transition: var(--transition-base);
+            transition: all 0.4s ease;
         }
 
-        .category-card::before {
+        .home-categories .category-card::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.3);
-            transition: var(--transition-base);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);
+            transition: all 0.4s ease;
         }
 
-        .category-card:hover::before {
-            background: rgba(0, 0, 0, 0.45);
+        .home-categories .category-card:hover::before {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
         }
 
-        .category-card:hover {
+        .home-categories .category-card:hover {
             transform: translateY(-8px);
             color: white;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
         }
 
-        .category-vegetables {
-            background: linear-gradient(135deg, #4a7c59 0%, #2d5a3d 100%);
+        .home-categories .category-vegetables {
+            background: linear-gradient(145deg, #5a8f69 0%, #2d5a3d 100%);
         }
 
-        .category-flowers {
-            background: linear-gradient(135deg, #c4785c 0%, #a65f43 100%);
+        .home-categories .category-flowers {
+            background: linear-gradient(145deg, #d4927a 0%, #a65f43 100%);
         }
 
-        .category-herbs {
-            background: linear-gradient(135deg, #8b6f47 0%, #6d5639 100%);
+        .home-categories .category-herbs {
+            background: linear-gradient(145deg, #a68a5b 0%, #6d5639 100%);
         }
 
-        .category-fruits {
-            background: linear-gradient(135deg, #d4a84b 0%, #b8912f 100%);
+        .home-categories .category-fruits {
+            background: linear-gradient(145deg, #e6c06a 0%, #b8912f 100%);
         }
 
-        .category-icon {
+        .home-categories .category-icon {
             position: relative;
             z-index: 1;
             margin-bottom: 1rem;
+            transition: transform 0.4s ease;
         }
 
-        .category-icon svg {
+        .home-categories .category-card:hover .category-icon {
+            transform: scale(1.1);
+        }
+
+        .home-categories .category-icon svg {
             width: 48px;
             height: 48px;
             stroke: white;
@@ -573,7 +529,7 @@
             stroke-width: 1.5;
         }
 
-        .category-card h4 {
+        .home-categories .category-card h4 {
             position: relative;
             z-index: 1;
             font-size: 1.25rem;
@@ -581,267 +537,195 @@
             color: white;
         }
 
-        .category-count {
+        .home-categories .category-count {
             position: relative;
             z-index: 1;
-            font-size: 0.875rem;
-            opacity: 0.85;
+            font-size: 0.85rem;
+            opacity: 0.9;
         }
 
-        /* ============================================
-           Products Section
-           ============================================ */
-        .products-section {
-            background: var(--color-cream-dark);
+        /* Products Section - NO price/cart */
+        .home-products {
+            background: linear-gradient(180deg, var(--color-cream-dark) 0%, var(--color-cream) 100%);
+            padding: 6rem 0;
         }
 
-        .section-header-row {
+        .home-products .section-header-row {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
             margin-bottom: 3rem;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
-        .section-header-left {
-            max-width: 550px;
-        }
-
-        .products-grid {
+        .home-products .products-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
         }
 
-        .product-card {
+        .home-products .product-card {
             background: white;
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-xl);
             overflow: hidden;
             border: 1px solid rgba(45, 90, 61, 0.06);
-            transition: var(--transition-base);
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: block;
         }
 
-        .product-card:hover {
+        .home-products .product-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 20px 50px rgba(45, 90, 61, 0.15);
         }
 
-        .product-image {
+        .home-products .product-image {
             position: relative;
-            height: 200px;
+            height: 170px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .bg-green {
-            background: linear-gradient(135deg, #4a7c59 0%, #2d5a3d 100%);
+        .home-products .bg-green {
+            background: linear-gradient(145deg, #5a8f69 0%, #2d5a3d 100%);
         }
 
-        .bg-brown {
-            background: linear-gradient(135deg, #8b6f47 0%, #6d5639 100%);
+        .home-products .bg-brown {
+            background: linear-gradient(145deg, #a68a5b 0%, #6d5639 100%);
         }
 
-        .bg-pink {
-            background: linear-gradient(135deg, #d69578 0%, #c4785c 100%);
+        .home-products .bg-pink {
+            background: linear-gradient(145deg, #e6a898 0%, #c4785c 100%);
         }
 
-        .bg-teal {
-            background: linear-gradient(135deg, #5a9a8a 0%, #3d7a6a 100%);
+        .home-products .bg-teal {
+            background: linear-gradient(145deg, #6aaa9a 0%, #3d7a6a 100%);
         }
 
-        .product-icon svg {
-            width: 64px;
-            height: 64px;
-            stroke: rgba(255, 255, 255, 0.9);
+        .home-products .product-icon {
+            transition: transform 0.4s ease;
+        }
+
+        .home-products .product-card:hover .product-icon {
+            transform: scale(1.1);
+        }
+
+        .home-products .product-icon svg {
+            width: 55px;
+            height: 55px;
+            stroke: rgba(255, 255, 255, 0.95);
             fill: none;
             stroke-width: 1.5;
         }
 
-        .product-badge {
+        .home-products .product-badge {
             position: absolute;
-            top: 1rem;
-            left: 1rem;
+            top: 0.85rem;
+            left: 0.85rem;
             padding: 0.35rem 0.85rem;
             border-radius: var(--radius-full);
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.7rem;
+            font-weight: 700;
             color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .badge-bestseller {
+        .home-products .badge-bestseller {
             background: var(--color-accent);
         }
 
-        .badge-new {
+        .home-products .badge-new {
             background: var(--color-primary);
         }
 
-        .badge-sale {
-            background: #c45c5c;
+        .home-products .badge-sale {
+            background: #e74c3c;
         }
 
-        .wishlist-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition-base);
+        .home-products .product-content {
+            padding: 1.25rem;
         }
 
-        .wishlist-btn:hover {
-            background: white;
-            transform: scale(1.1);
-        }
-
-        .wishlist-btn svg {
-            width: 18px;
-            height: 18px;
-            stroke: var(--color-charcoal);
-            fill: none;
-            stroke-width: 2;
-        }
-
-        .wishlist-btn:hover svg {
-            stroke: #c45c5c;
-        }
-
-        .product-content {
-            padding: 1.5rem;
-        }
-
-        .product-category {
-            font-size: 0.75rem;
-            font-weight: 600;
+        .home-products .product-category {
+            font-size: 0.7rem;
+            font-weight: 700;
             color: var(--color-primary);
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
-        .product-title {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+        .home-products .product-title {
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
             color: var(--color-charcoal);
+            transition: color 0.3s ease;
         }
 
-        .product-desc {
-            font-size: 0.875rem;
-            color: var(--color-charcoal-light);
-            opacity: 0.8;
-            margin-bottom: 0.75rem;
-            line-height: 1.5;
-        }
-
-        .product-meta {
-            display: flex;
-            gap: 1rem;
-            font-size: 0.75rem;
-            color: var(--color-charcoal-light);
-            margin-bottom: 1rem;
-        }
-
-        .product-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-        }
-
-        .product-meta svg {
-            width: 14px;
-            height: 14px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 2;
-        }
-
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(45, 90, 61, 0.08);
-        }
-
-        .product-price {
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            font-weight: 700;
+        .home-products .product-card:hover .product-title {
             color: var(--color-primary);
         }
 
-        .product-price .original {
+        .home-products .product-desc {
             font-size: 0.85rem;
             color: var(--color-charcoal-light);
-            opacity: 0.6;
-            text-decoration: line-through;
-            margin-left: 0.5rem;
-            font-weight: 400;
+            line-height: 1.5;
+            margin-bottom: 0.85rem;
         }
 
-        .btn-cart {
-            width: 44px;
-            height: 44px;
-            background: var(--color-primary);
-            color: white;
-            border: none;
-            border-radius: 50%;
+        .home-products .product-meta {
+            display: flex;
+            gap: 0.6rem;
+            font-size: 0.75rem;
+            color: var(--color-charcoal-light);
+        }
+
+        .home-products .product-meta span {
             display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition-base);
+            gap: 0.3rem;
+            background: var(--color-cream);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--radius-sm);
         }
 
-        .btn-cart:hover {
-            background: var(--color-primary-dark);
-            transform: scale(1.1);
-        }
-
-        .btn-cart svg {
-            width: 20px;
-            height: 20px;
-            stroke: white;
+        .home-products .product-meta svg {
+            width: 12px;
+            height: 12px;
+            stroke: var(--color-primary);
             fill: none;
             stroke-width: 2;
         }
 
-        /* ============================================
-           About Section
-           ============================================ */
-        .about-section {
+        /* About Section */
+        .home-about {
             background: var(--color-warm-white);
+            padding: 6rem 0;
         }
 
-        .about-grid {
+        .home-about .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.1fr;
             gap: 4rem;
             align-items: center;
         }
 
-        .about-images {
+        .home-about .about-images {
             position: relative;
             padding: 2rem;
         }
 
-        .about-img-main {
+        .home-about .about-img-main {
             border-radius: var(--radius-xl);
             overflow: hidden;
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 25px 60px rgba(45, 90, 61, 0.2);
         }
 
-        .img-placeholder {
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+        .home-about .img-placeholder {
+            background: linear-gradient(145deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
             height: 380px;
             display: flex;
             flex-direction: column;
@@ -850,91 +734,99 @@
             color: white;
         }
 
-        .img-placeholder svg {
-            width: 80px;
-            height: 80px;
+        .home-about .img-placeholder svg {
+            width: 75px;
+            height: 75px;
             stroke: white;
             fill: none;
             stroke-width: 1.5;
             margin-bottom: 1rem;
         }
 
-        .img-placeholder span {
+        .home-about .img-placeholder span {
             font-family: var(--font-display);
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 600;
         }
 
-        .about-img-accent {
+        .home-about .about-img-accent {
             position: absolute;
             bottom: 0;
             right: 0;
             border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 15px 40px rgba(196, 120, 92, 0.25);
         }
 
-        .img-placeholder.small {
+        .home-about .img-placeholder.small {
             width: 130px;
             height: 130px;
-            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+            background: linear-gradient(145deg, var(--color-accent-light) 0%, var(--color-accent) 100%);
         }
 
-        .img-placeholder.small svg {
-            width: 48px;
-            height: 48px;
+        .home-about .img-placeholder.small svg {
+            width: 45px;
+            height: 45px;
             margin-bottom: 0;
         }
 
-        .experience-badge {
+        .home-about .experience-badge {
             position: absolute;
             top: 0;
-            right: 2rem;
+            right: 1.5rem;
             background: white;
-            padding: 1.5rem;
+            padding: 1.25rem;
             border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 12px 35px rgba(45, 90, 61, 0.15);
             text-align: center;
         }
 
-        .exp-number {
+        .home-about .exp-number {
             display: block;
             font-family: var(--font-display);
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--color-primary);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             line-height: 1;
         }
 
-        .exp-text {
-            font-size: 0.85rem;
+        .home-about .exp-text {
+            font-size: 0.8rem;
             color: var(--color-charcoal-light);
         }
 
-        .about-content h2 {
-            margin-bottom: 1.5rem;
-        }
-
-        .about-content p {
+        .home-about .about-content p {
             color: var(--color-charcoal-light);
             margin-bottom: 1rem;
             line-height: 1.75;
         }
 
-        .about-features {
-            margin-top: 2rem;
+        .home-about .about-features {
+            margin-top: 1.75rem;
         }
 
-        .about-feature {
+        .home-about .about-feature {
             display: flex;
             align-items: flex-start;
             gap: 0.75rem;
-            margin-bottom: 0.85rem;
+            margin-bottom: 0.75rem;
+            padding: 0.6rem 0.9rem;
+            background: rgba(45, 90, 61, 0.04);
+            border-radius: var(--radius-md);
+            transition: all 0.3s ease;
         }
 
-        .about-feature svg {
-            width: 22px;
-            height: 22px;
+        .home-about .about-feature:hover {
+            background: rgba(45, 90, 61, 0.08);
+            transform: translateX(5px);
+        }
+
+        .home-about .about-feature svg {
+            width: 20px;
+            height: 20px;
             stroke: var(--color-primary);
             fill: none;
             stroke-width: 2;
@@ -942,97 +834,97 @@
             margin-top: 2px;
         }
 
-        .about-feature span {
-            color: var(--color-charcoal-light);
+        .home-about .about-feature span {
+            color: var(--color-charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
         }
 
-        /* ============================================
-           Testimonials Section
-           ============================================ */
-        .testimonials-section {
-            background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+        /* Testimonials Section */
+        .home-testimonials {
+            background: linear-gradient(145deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+            padding: 6rem 0;
             position: relative;
             overflow: hidden;
         }
 
-        .testimonials-section::before {
+        .home-testimonials::before {
             content: '';
             position: absolute;
             inset: 0;
             background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
-        .testimonials-section .section-header {
+        .home-testimonials .section-header {
             position: relative;
             z-index: 1;
         }
 
-        .testimonials-section .section-title {
+        .home-testimonials .section-title {
             color: white;
         }
 
-        .testimonials-section .section-description {
+        .home-testimonials .section-description {
             color: rgba(255, 255, 255, 0.7);
         }
 
-        .testimonials-grid {
+        .home-testimonials .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            gap: 1.75rem;
             position: relative;
             z-index: 1;
         }
 
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.08);
+        .home-testimonials .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--radius-xl);
-            padding: 2rem;
-            transition: var(--transition-base);
+            padding: 1.75rem;
+            transition: all 0.4s ease;
         }
 
-        .testimonial-card:hover {
-            background: rgba(255, 255, 255, 0.12);
+        .home-testimonials .testimonial-card:hover {
+            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-5px);
         }
 
-        .testimonial-card.featured {
+        .home-testimonials .testimonial-card.featured {
             background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.2);
         }
 
-        .testimonial-rating {
+        .home-testimonials .testimonial-rating {
             display: flex;
-            gap: 0.25rem;
+            gap: 0.2rem;
             margin-bottom: 1rem;
             color: #f0c14b;
         }
 
-        .testimonial-rating svg {
-            width: 18px;
-            height: 18px;
+        .home-testimonials .testimonial-rating svg {
+            width: 16px;
+            height: 16px;
             fill: currentColor;
         }
 
-        .testimonial-card blockquote {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
+        .home-testimonials .testimonial-card blockquote {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.95rem;
             font-style: italic;
             line-height: 1.7;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
-        .testimonial-author {
+        .home-testimonials .testimonial-author {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.85rem;
         }
 
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-accent) 100%);
+        .home-testimonials .author-avatar {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -1040,102 +932,104 @@
             color: white;
             font-family: var(--font-display);
             font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .author-info h5 {
-            color: white;
             font-size: 1rem;
-            margin-bottom: 0.2rem;
         }
 
-        .author-info span {
+        .home-testimonials .author-info h5 {
+            color: white;
+            font-size: 0.95rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .home-testimonials .author-info span {
             color: rgba(255, 255, 255, 0.6);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
-        /* ============================================
-           Newsletter Section
-           ============================================ */
-        .newsletter-section {
+        /* Newsletter Section */
+        .home-newsletter {
             background: var(--color-cream);
+            padding: 6rem 0;
         }
 
-        .newsletter-wrapper {
-            background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
-            border-radius: var(--radius-xl);
-            padding: 4rem;
+        .home-newsletter .newsletter-wrapper {
+            background: linear-gradient(145deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+            border-radius: 20px;
+            padding: 3.5rem;
             position: relative;
             overflow: hidden;
             text-align: center;
+            box-shadow: 0 25px 60px rgba(45, 90, 61, 0.25);
         }
 
-        .newsletter-wrapper::before {
+        .home-newsletter .newsletter-wrapper::before {
             content: '';
             position: absolute;
             top: -50%;
             right: -20%;
             width: 60%;
             height: 150%;
-            background: radial-gradient(ellipse, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
         }
 
-        .newsletter-icon {
-            width: 80px;
-            height: 80px;
+        .home-newsletter .newsletter-icon {
+            width: 70px;
+            height: 70px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 1.25rem;
             position: relative;
         }
 
-        .newsletter-icon svg {
-            width: 36px;
-            height: 36px;
+        .home-newsletter .newsletter-icon svg {
+            width: 32px;
+            height: 32px;
             stroke: white;
             fill: none;
             stroke-width: 2;
         }
 
-        .newsletter-title {
+        .home-newsletter .newsletter-title {
             color: white;
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 1.85rem;
+            margin-bottom: 0.85rem;
             position: relative;
         }
 
-        .newsletter-desc {
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 2rem;
-            max-width: 500px;
+        .home-newsletter .newsletter-desc {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.75rem;
+            max-width: 480px;
             margin-left: auto;
             margin-right: auto;
             position: relative;
         }
 
-        .newsletter-form {
-            max-width: 500px;
+        .home-newsletter .newsletter-form {
+            max-width: 480px;
             margin: 0 auto;
             display: flex;
             gap: 0;
             position: relative;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+            border-radius: var(--radius-full);
         }
 
-        .newsletter-form input {
+        .home-newsletter .newsletter-form input {
             flex: 1;
-            padding: 1rem 1.5rem;
+            padding: 0.95rem 1.4rem;
             border: none;
             border-radius: var(--radius-full) 0 0 var(--radius-full);
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-family: var(--font-body);
             outline: none;
         }
 
-        .newsletter-form button {
-            padding: 1rem 2rem;
+        .home-newsletter .newsletter-form button {
+            padding: 0.95rem 1.75rem;
             background: var(--color-charcoal);
             color: white;
             border: none;
@@ -1147,161 +1041,159 @@
             white-space: nowrap;
         }
 
-        .newsletter-form button:hover {
+        .home-newsletter .newsletter-form button:hover {
             background: var(--color-primary-dark);
         }
 
-        .newsletter-note {
+        .home-newsletter .newsletter-note {
             color: rgba(255, 255, 255, 0.6);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             margin-top: 1rem;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
         }
 
-        /* ============================================
-           Responsive Styles
-           ============================================ */
+        .home-newsletter .newsletter-note svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* Responsive */
         @media (max-width: 1199px) {
-            .hero-circle-main {
+            .home-hero .hero-circle-main {
                 width: 320px;
                 height: 320px;
             }
 
-            .floating-card.card-1 {
-                left: 0;
+            .home-hero .hero-circle-ring {
+                width: 400px;
+                height: 400px;
             }
 
-            .floating-card.card-2 {
-                left: -5%;
-            }
-
-            .products-grid {
+            .home-products .products-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
 
         @media (max-width: 991px) {
-            .hero-inner {
+            .home-hero .hero-inner {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
 
-            .hero-content {
-                order: 1;
+            .home-hero .hero-visual {
+                margin-top: 2rem;
             }
 
-            .hero-visual {
-                order: 2;
-                margin-top: 3rem;
-            }
-
-            .hero-description {
+            .home-hero .hero-description {
                 margin: 0 auto 2rem;
             }
 
-            .hero-buttons {
+            .home-hero .hero-buttons {
                 justify-content: center;
             }
 
-            .hero-stats {
+            .home-hero .hero-stats {
                 justify-content: center;
             }
 
-            .features-grid {
+            .home-features .features-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .categories-grid {
+            .home-categories .categories-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .products-grid {
+            .home-products .products-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .testimonials-grid {
+            .home-testimonials .testimonials-grid {
                 grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
             }
 
-            .about-grid {
+            .home-about .about-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .about-images {
-                margin-bottom: 2rem;
             }
         }
 
         @media (max-width: 767px) {
-            .hero {
-                padding-top: 100px;
+            .home-hero {
+                padding: 3rem 0 4rem;
                 min-height: auto;
             }
 
-            .hero-inner {
-                min-height: auto;
-                padding: 2rem 0 4rem;
-            }
-
-            .hero-visual {
+            .home-hero .hero-visual {
                 display: none;
             }
 
-            .features-grid {
+            .home-hero .hero-title {
+                font-size: 2.25rem;
+            }
+
+            .home-features .features-grid {
                 grid-template-columns: 1fr;
             }
 
-            .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .products-grid {
+            .home-products .products-grid {
                 grid-template-columns: 1fr;
             }
 
-            .section-header-row {
+            .home-products .section-header-row {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
+                text-align: center;
             }
 
-            .newsletter-wrapper {
-                padding: 3rem 1.5rem;
+            .home-newsletter .newsletter-wrapper {
+                padding: 2.5rem 1.5rem;
             }
 
-            .newsletter-form {
+            .home-newsletter .newsletter-form {
                 flex-direction: column;
+                box-shadow: none;
             }
 
-            .newsletter-form input {
+            .home-newsletter .newsletter-form input {
                 border-radius: var(--radius-full);
                 margin-bottom: 0.75rem;
             }
 
-            .newsletter-form button {
+            .home-newsletter .newsletter-form button {
                 border-radius: var(--radius-full);
             }
         }
 
         @media (max-width: 575px) {
-            .hero-buttons {
+            .home-hero .hero-buttons {
                 flex-direction: column;
             }
 
-            .hero-buttons .btn {
+            .home-hero .hero-buttons .btn {
                 width: 100%;
                 justify-content: center;
             }
 
-            .stat-divider {
+            .home-hero .stat-divider {
                 display: none;
             }
 
-            .categories-grid {
-                grid-template-columns: 1fr;
+            .home-hero .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
             }
 
-            .category-card {
-                min-height: 160px;
+            .home-categories .categories-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1309,7 +1201,7 @@
 
 @section('content')
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="home-hero">
         <div class="hero-bg">
             <div class="hero-shape hero-shape-1"></div>
             <div class="hero-shape hero-shape-2"></div>
@@ -1323,10 +1215,10 @@
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                             <path d="M22 4L12 14.01l-3-3" />
                         </svg>
-                        100% Organic & Non-GMO
+                        100% Organic & Non-GMO Certified
                     </span>
                     <h1 class="hero-title">
-                        Cultivate Your <span class="text-gradient">Dream Garden</span> With Premium Seeds
+                        Cultivate Your <span class="highlight text-gradient">Dream Garden</span> With Premium Seeds
                     </h1>
                     <p class="hero-description">
                         Discover our curated collection of heirloom and organic seeds. From vibrant vegetables to stunning
@@ -1351,17 +1243,17 @@
                     </div>
                     <div class="hero-stats">
                         <div class="stat-item">
-                            <span class="stat-number">500+</span>
+                            <span class="stat-number">500<span class="suffix">+</span></span>
                             <span class="stat-label">Seed Varieties</span>
                         </div>
                         <div class="stat-divider"></div>
                         <div class="stat-item">
-                            <span class="stat-number">50K+</span>
+                            <span class="stat-number">50K<span class="suffix">+</span></span>
                             <span class="stat-label">Happy Gardeners</span>
                         </div>
                         <div class="stat-divider"></div>
                         <div class="stat-item">
-                            <span class="stat-number">98%</span>
+                            <span class="stat-number">98<span class="suffix">%</span></span>
                             <span class="stat-label">Germination Rate</span>
                         </div>
                     </div>
@@ -1381,7 +1273,7 @@
                                 <circle cx="5.5" cy="18.5" r="2.5" />
                                 <circle cx="18.5" cy="18.5" r="2.5" />
                             </svg>
-                            <span>Free Shipping</span>
+                            <span>Free Shipping $50+</span>
                         </div>
                         <div class="floating-card card-3">
                             <svg viewBox="0 0 24 24">
@@ -1390,15 +1282,16 @@
                             </svg>
                             <span>Premium Quality</span>
                         </div>
+                        <div class="hero-circle-ring"></div>
                         <div class="hero-circle-main">
                             <svg viewBox="0 0 200 200" class="plant-svg">
                                 <defs>
                                     <linearGradient id="leafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#4a7c59" />
+                                        <stop offset="0%" style="stop-color:#6b9b7a" />
                                         <stop offset="100%" style="stop-color:#2d5a3d" />
                                     </linearGradient>
                                 </defs>
-                                <path d="M100 180 L100 90" stroke="#3d6b4a" stroke-width="6" stroke-linecap="round" />
+                                <path d="M100 180 L100 90" stroke="#4a7c59" stroke-width="6" stroke-linecap="round" />
                                 <ellipse cx="100" cy="185" rx="25" ry="10" fill="#8b6f47" />
                                 <path d="M100 130 Q55 100 50 50 Q90 70 100 130" fill="url(#leafGradient)"
                                     class="leaf leaf-1" />
@@ -1414,75 +1307,16 @@
                 </div>
             </div>
         </div>
-        <div class="scroll-indicator">
-            <a href="#features">
-                <svg viewBox="0 0 24 24">
-                    <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-                </svg>
-            </a>
-        </div>
-    </section>
-
-    <!-- Trusted Section -->
-    <section class="trusted-section">
-        <div class="container">
-            <p class="trusted-title">Trusted by leading gardening communities</p>
-            <div class="trusted-logos">
-                <div class="partner-logo">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                    </svg>
-                    <span>GardenPro</span>
-                </div>
-                <div class="partner-logo">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 22c4-4 8-7.5 8-12a8 8 0 1 0-16 0c0 4.5 4 8 8 12z" />
-                        <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    <span>EcoFarms</span>
-                </div>
-                <div class="partner-logo">
-                    <svg viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="5" />
-                        <line x1="12" y1="1" x2="12" y2="3" />
-                        <line x1="12" y1="21" x2="12" y2="23" />
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                        <line x1="1" y1="12" x2="3" y2="12" />
-                        <line x1="21" y1="12" x2="23" y2="12" />
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                    </svg>
-                    <span>SunGrow</span>
-                </div>
-                <div class="partner-logo">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
-                    </svg>
-                    <span>AquaGreen</span>
-                </div>
-                <div class="partner-logo">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 2C13.5 4 14 6.5 14 9c0 3-2 5.5-2 5.5s-2-2.5-2-5.5c0-2.5.5-5 2-7z" />
-                        <path d="M7 10c2.5.5 4.5 2 5.5 4-.5 1-1.5 2.5-3 3.5-2 1.3-4 1.5-5.5 1 0-3 1-6.5 3-8.5z" />
-                        <path d="M17 10c-2.5.5-4.5 2-5.5 4 .5 1 1.5 2.5 3 3.5 2 1.3 4 1.5 5.5 1 0-3-1-6.5-3-8.5z" />
-                    </svg>
-                    <span>BloomBox</span>
-                </div>
-            </div>
-        </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features-section section-lg" id="features">
+    <section class="home-features" id="features">
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Why Choose Us</span>
                 <h2 class="section-title">Seeds That Make a <span class="text-gradient">Difference</span></h2>
-                <p class="section-description">
-                    We're committed to providing the highest quality organic seeds for gardeners who care about nature and
-                    sustainability.
-                </p>
+                <p class="section-description">We're committed to providing the highest quality organic seeds for gardeners
+                    who care about nature and sustainability.</p>
             </div>
             <div class="features-grid">
                 @include('partials.feature-card', ['icon' => 'shield', 'color' => '', 'title' => '100% Organic', 'description' => 'All our seeds are certified organic, non-GMO, and harvested from sustainable farms worldwide.'])
@@ -1496,52 +1330,43 @@
     </section>
 
     <!-- Categories Section -->
-    <section class="categories-section section-lg">
+    <section class="home-categories">
         <div class="container">
             <div class="section-header">
                 <span class="section-badge">Browse Collection</span>
                 <h2 class="section-title">Shop by <span class="text-gradient">Category</span></h2>
-                <p class="section-description">
-                    Explore our diverse range of premium seeds organized by type for easy browsing.
-                </p>
+                <p class="section-description">Explore our diverse range of premium seeds organized by type for easy
+                    browsing.</p>
             </div>
             <div class="categories-grid">
                 <a href="/products" class="category-card category-vegetables">
-                    <div class="category-icon">
-                        <svg viewBox="0 0 24 24">
+                    <div class="category-icon"><svg viewBox="0 0 24 24">
                             <path
                                 d="M17 8c-.5-2.5-3-4.5-6-4.5S5.5 5.5 5 8c-3 0-5 2-5 4.5S2 17 5 17h14c3 0 5-2 5-4.5S20 8 17 8z" />
-                        </svg>
-                    </div>
+                        </svg></div>
                     <h4>Vegetables</h4>
                     <span class="category-count">48 Products</span>
                 </a>
                 <a href="/products" class="category-card category-flowers">
-                    <div class="category-icon">
-                        <svg viewBox="0 0 24 24">
+                    <div class="category-icon"><svg viewBox="0 0 24 24">
                             <path d="M12 2C13.5 4 14 6.5 14 9c0 3-2 5.5-2 5.5s-2-2.5-2-5.5c0-2.5.5-5 2-7z" />
                             <path d="M12 22c-1 0-2-.5-2-2 0-1 1-2 2-2s2 1 2 2c0 1.5-1 2-2 2z" />
-                        </svg>
-                    </div>
+                        </svg></div>
                     <h4>Flowers</h4>
                     <span class="category-count">35 Products</span>
                 </a>
                 <a href="/products" class="category-card category-herbs">
-                    <div class="category-icon">
-                        <svg viewBox="0 0 24 24">
+                    <div class="category-icon"><svg viewBox="0 0 24 24">
                             <path d="M6.13 1L6 16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2L17.87 1M12 1v21M9 21h6" />
-                        </svg>
-                    </div>
+                        </svg></div>
                     <h4>Herbs</h4>
                     <span class="category-count">22 Products</span>
                 </a>
                 <a href="/products" class="category-card category-fruits">
-                    <div class="category-icon">
-                        <svg viewBox="0 0 24 24">
+                    <div class="category-icon"><svg viewBox="0 0 24 24">
                             <circle cx="12" cy="14" r="8" />
                             <path d="M12 6V2M12 6c-2 0-3 1-3 3" />
-                        </svg>
-                    </div>
+                        </svg></div>
                     <h4>Fruits</h4>
                     <span class="category-count">19 Products</span>
                 </a>
@@ -1550,7 +1375,7 @@
     </section>
 
     <!-- Products Section -->
-    <section class="products-section section-lg" id="products">
+    <section class="home-products" id="products">
         <div class="container">
             <div class="section-header-row">
                 <div class="section-header-left">
@@ -1558,24 +1383,108 @@
                     <h2 class="section-title">Bestselling <span class="text-gradient">Seeds</span></h2>
                     <p class="section-description">Our most loved seeds, chosen by thousands of happy gardeners.</p>
                 </div>
-                <a href="/products" class="btn btn-outline">
-                    View All Products
-                    <svg viewBox="0 0 24 24">
+                <a href="/products" class="btn btn-outline">View All Products <svg viewBox="0 0 24 24">
                         <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                </a>
+                    </svg></a>
             </div>
             <div class="products-grid">
-                @include('partials.product-card', ['badge' => 'bestseller', 'color' => 'green', 'category' => 'Vegetables', 'title' => 'Heirloom Tomato Mix', 'description' => '5 heritage varieties including Brandywine & Cherokee Purple', 'days' => '70-85', 'cert' => 'Organic', 'price' => '12.99'])
-                @include('partials.product-card', ['badge' => '', 'color' => 'brown', 'category' => 'Herbs', 'title' => 'Culinary Herb Garden', 'description' => 'Complete kit: Basil, Thyme, Oregano, Rosemary & Sage', 'days' => '30-60', 'cert' => 'Non-GMO', 'price' => '9.99'])
-                @include('partials.product-card', ['badge' => 'new', 'color' => 'pink', 'category' => 'Flowers', 'title' => 'Wildflower Meadow Mix', 'description' => '20+ pollinator-friendly varieties for stunning displays', 'days' => '60-90', 'cert' => 'Heirloom', 'price' => '14.99'])
-                @include('partials.product-card', ['badge' => 'sale', 'color' => 'teal', 'category' => 'Vegetables', 'title' => 'Salad Greens Mix', 'description' => 'Lettuce, Arugula, Spinach & Microgreens blend', 'days' => '21-45', 'cert' => 'Organic', 'price' => '8.99', 'original_price' => '11.99'])
+                <a href="/products" class="product-card">
+                    <div class="product-image bg-green">
+                        <span class="product-badge badge-bestseller">Bestseller</span>
+                        <div class="product-icon"><svg viewBox="0 0 24 24">
+                                <path d="M12 2C13.5 4 14 6.5 14 9c0 3-2 5.5-2 5.5s-2-2.5-2-5.5c0-2.5.5-5 2-7z" />
+                            </svg></div>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Vegetables</span>
+                        <h4 class="product-title">Heirloom Tomato Mix</h4>
+                        <p class="product-desc">5 heritage varieties including Brandywine & Cherokee Purple</p>
+                        <div class="product-meta">
+                            <span><svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v6l4 2" />
+                                </svg>70-85 days</span>
+                            <span><svg viewBox="0 0 24 24">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                    <path d="M22 4L12 14.01l-3-3" />
+                                </svg>Organic</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="/products" class="product-card">
+                    <div class="product-image bg-brown">
+                        <div class="product-icon"><svg viewBox="0 0 24 24">
+                                <path d="M12 2C13.5 4 14 6.5 14 9c0 3-2 5.5-2 5.5s-2-2.5-2-5.5c0-2.5.5-5 2-7z" />
+                            </svg></div>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Herbs</span>
+                        <h4 class="product-title">Culinary Herb Garden</h4>
+                        <p class="product-desc">Complete kit: Basil, Thyme, Oregano, Rosemary & Sage</p>
+                        <div class="product-meta">
+                            <span><svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v6l4 2" />
+                                </svg>30-60 days</span>
+                            <span><svg viewBox="0 0 24 24">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                    <path d="M22 4L12 14.01l-3-3" />
+                                </svg>Non-GMO</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="/products" class="product-card">
+                    <div class="product-image bg-pink">
+                        <span class="product-badge badge-new">New</span>
+                        <div class="product-icon"><svg viewBox="0 0 24 24">
+                                <path d="M12 2C13.5 4 14 6.5 14 9c0 3-2 5.5-2 5.5s-2-2.5-2-5.5c0-2.5.5-5 2-7z" />
+                            </svg></div>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Flowers</span>
+                        <h4 class="product-title">Wildflower Meadow Mix</h4>
+                        <p class="product-desc">20+ pollinator-friendly varieties for stunning displays</p>
+                        <div class="product-meta">
+                            <span><svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v6l4 2" />
+                                </svg>60-90 days</span>
+                            <span><svg viewBox="0 0 24 24">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                    <path d="M22 4L12 14.01l-3-3" />
+                                </svg>Heirloom</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="/products" class="product-card">
+                    <div class="product-image bg-teal">
+                        <span class="product-badge badge-sale">Sale</span>
+                        <div class="product-icon"><svg viewBox="0 0 24 24">
+                                <path d="M12 2C13.5 4 14 6.5 14 9c0 3-2 5.5-2 5.5s-2-2.5-2-5.5c0-2.5.5-5 2-7z" />
+                            </svg></div>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Vegetables</span>
+                        <h4 class="product-title">Salad Greens Mix</h4>
+                        <p class="product-desc">Lettuce, Arugula, Spinach & Microgreens blend</p>
+                        <div class="product-meta">
+                            <span><svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 6v6l4 2" />
+                                </svg>21-45 days</span>
+                            <span><svg viewBox="0 0 24 24">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                    <path d="M22 4L12 14.01l-3-3" />
+                                </svg>Organic</span>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="about-section section-lg" id="about">
+    <section class="home-about" id="about">
         <div class="container">
             <div class="about-grid">
                 <div class="about-images">
@@ -1606,100 +1515,71 @@
                     <span class="section-badge">Our Story</span>
                     <h2 class="section-title">Growing Together for a <span class="text-gradient">Greener Tomorrow</span>
                     </h2>
-                    <p>
-                        Founded in 2010, ParlakSeed began with a simple mission: to provide gardeners with the highest
-                        quality organic seeds while protecting our planet. What started as a small family farm has grown
-                        into a trusted name in sustainable gardening.
-                    </p>
-                    <p>
-                        We work directly with certified organic farms worldwide to source seeds that are not only non-GMO
-                        but also contribute to biodiversity and sustainable agriculture practices.
-                    </p>
+                    <p>Founded in 2010, ParlakSeed began with a simple mission: to provide gardeners with the highest
+                        quality organic seeds while protecting our planet.</p>
+                    <p>We work directly with certified organic farms worldwide to source seeds that are not only non-GMO but
+                        also contribute to biodiversity and sustainable agriculture practices.</p>
                     <div class="about-features">
-                        <div class="about-feature">
-                            <svg viewBox="0 0 24 24">
+                        <div class="about-feature"><svg viewBox="0 0 24 24">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <path d="M22 4L12 14.01l-3-3" />
-                            </svg>
-                            <span>Family-owned business with passion for gardening</span>
-                        </div>
-                        <div class="about-feature">
-                            <svg viewBox="0 0 24 24">
+                            </svg><span>Family-owned business with passion for gardening</span></div>
+                        <div class="about-feature"><svg viewBox="0 0 24 24">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <path d="M22 4L12 14.01l-3-3" />
-                            </svg>
-                            <span>Direct partnerships with organic farms globally</span>
-                        </div>
-                        <div class="about-feature">
-                            <svg viewBox="0 0 24 24">
+                            </svg><span>Direct partnerships with organic farms globally</span></div>
+                        <div class="about-feature"><svg viewBox="0 0 24 24">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <path d="M22 4L12 14.01l-3-3" />
-                            </svg>
-                            <span>Committed to sustainability and eco-friendly packaging</span>
-                        </div>
-                        <div class="about-feature">
-                            <svg viewBox="0 0 24 24">
+                            </svg><span>Committed to sustainability and eco-friendly packaging</span></div>
+                        <div class="about-feature"><svg viewBox="0 0 24 24">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <path d="M22 4L12 14.01l-3-3" />
-                            </svg>
-                            <span>Expert gardening support and growing guides</span>
-                        </div>
+                            </svg><span>Expert gardening support and growing guides</span></div>
                     </div>
-                    <a href="/contact" class="btn btn-primary btn-lg mt-4">
-                        <svg viewBox="0 0 24 24">
+                    <a href="/contact" class="btn btn-primary btn-lg mt-4"><svg viewBox="0 0 24 24">
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                        </svg>
-                        Get in Touch
-                    </a>
+                        </svg>Get in Touch</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials-section section-lg" id="testimonials">
+    <section class="home-testimonials" id="testimonials">
         <div class="container">
             <div class="section-header">
                 <span class="section-badge badge-light">Testimonials</span>
                 <h2 class="section-title">What Our <span class="text-gradient-light">Gardeners</span> Say</h2>
-                <p class="section-description">
-                    Join thousands of satisfied customers growing beautiful gardens with ParlakSeed.
-                </p>
+                <p class="section-description">Join thousands of satisfied customers growing beautiful gardens with
+                    ParlakSeed.</p>
             </div>
             <div class="testimonials-grid">
-                @include('partials.testimonial-card', ['initials' => 'SJ', 'name' => 'Sarah Johnson', 'location' => 'Home Gardener, Vermont', 'quote' => 'The germination rate was incredible! Every single seed sprouted. My garden has never looked better. I\'m amazed by the quality.'])
-                @include('partials.testimonial-card', ['initials' => 'MC', 'name' => 'Michael Chen', 'location' => 'Organic Farmer, Oregon', 'quote' => 'As a professional farmer, seed quality matters. ParlakSeed delivers consistently excellent organic seeds. Best supplier I\'ve worked with!', 'featured' => true])
-                @include('partials.testimonial-card', ['initials' => 'ER', 'name' => 'Emily Rodriguez', 'location' => 'Garden Enthusiast, Texas', 'quote' => 'The wildflower mix brought so many butterflies and bees to my yard! Beautiful blooms all summer. Customer service was fantastic.'])
+                @include('partials.testimonial-card', ['initials' => 'SJ', 'name' => 'Sarah Johnson', 'location' => 'Home Gardener, Vermont', 'quote' => 'The germination rate was incredible! Every single seed sprouted. My garden has never looked better.'])
+                @include('partials.testimonial-card', ['initials' => 'MC', 'name' => 'Michael Chen', 'location' => 'Organic Farmer, Oregon', 'quote' => 'As a professional farmer, seed quality matters. ParlakSeed delivers consistently excellent organic seeds.', 'featured' => true])
+                @include('partials.testimonial-card', ['initials' => 'ER', 'name' => 'Emily Rodriguez', 'location' => 'Garden Enthusiast, Texas', 'quote' => 'The wildflower mix brought so many butterflies and bees to my yard! Beautiful blooms all summer.'])
             </div>
         </div>
     </section>
 
     <!-- Newsletter Section -->
-    <section class="newsletter-section section-lg">
+    <section class="home-newsletter">
         <div class="container">
             <div class="newsletter-wrapper">
-                <div class="newsletter-icon">
-                    <svg viewBox="0 0 24 24">
+                <div class="newsletter-icon"><svg viewBox="0 0 24 24">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                         <polyline points="22,6 12,13 2,6" />
-                    </svg>
-                </div>
+                    </svg></div>
                 <h2 class="newsletter-title">Join Our Growing Community</h2>
-                <p class="newsletter-desc">
-                    Subscribe to get exclusive deals, seasonal planting guides, and expert gardening tips delivered straight
-                    to your inbox.
-                </p>
+                <p class="newsletter-desc">Subscribe to get exclusive deals, seasonal planting guides, and expert gardening
+                    tips.</p>
                 <form class="newsletter-form" onsubmit="return false;">
                     <input type="email" placeholder="Enter your email address" required>
                     <button type="submit">Subscribe →</button>
                 </form>
-                <p class="newsletter-note">
-                    <svg viewBox="0 0 24 24"
-                        style="width: 16px; height: 16px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 2; vertical-align: middle; margin-right: 4px;">
+                <p class="newsletter-note"><svg viewBox="0 0 24 24">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                    We respect your privacy. Unsubscribe at any time.
-                </p>
+                    </svg>We respect your privacy. Unsubscribe at any time.</p>
             </div>
         </div>
     </section>

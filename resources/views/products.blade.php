@@ -6,18 +6,19 @@
 @section('styles')
     <style>
         /* ============================================
-           Products Page Styles
-           ============================================ */
-        .products-layout {
+               PRODUCTS PAGE STYLES - Self Contained
+               ============================================ */
+
+        .shop-layout {
             display: grid;
             grid-template-columns: 280px 1fr;
             gap: 2.5rem;
         }
 
         /* Sidebar */
-        .sidebar {
+        .shop-sidebar {
             position: sticky;
-            top: 100px;
+            top: calc(var(--header-height) + 20px);
             height: fit-content;
         }
 
@@ -72,10 +73,9 @@
             cursor: pointer;
         }
 
-        .filter-option label {
-            cursor: pointer;
-            font-size: 0.95rem;
+        .filter-option span {
             flex: 1;
+            font-size: 0.95rem;
         }
 
         .filter-count {
@@ -217,148 +217,198 @@
         }
 
         /* Products Grid */
-        .products-grid {
+        .shop-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
         }
 
-        .product-card {
+        /* Product Card - Full with Price */
+        .shop-product-card {
             background: white;
             border-radius: var(--radius-lg);
             overflow: hidden;
             border: 1px solid rgba(45, 90, 61, 0.06);
-            transition: var(--transition-base);
+            transition: all 0.4s ease;
         }
 
-        .product-card:hover {
+        .shop-product-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 20px 50px rgba(45, 90, 61, 0.15);
         }
 
-        .product-image {
+        .shop-product-image {
             position: relative;
-            height: 220px;
+            height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .bg-green { background: linear-gradient(135deg, #4a7c59 0%, #2d5a3d 100%); }
-        .bg-brown { background: linear-gradient(135deg, #8b6f47 0%, #6d5639 100%); }
-        .bg-pink { background: linear-gradient(135deg, #d69578 0%, #c4785c 100%); }
-        .bg-teal { background: linear-gradient(135deg, #5a9a8a 0%, #3d7a6a 100%); }
-        .bg-orange { background: linear-gradient(135deg, #e6a84b 0%, #c4785c 100%); }
-        .bg-purple { background: linear-gradient(135deg, #8b6fb0 0%, #5a7d66 100%); }
-        .bg-red { background: linear-gradient(135deg, #c45c5c 0%, #c4785c 100%); }
-        .bg-yellow { background: linear-gradient(135deg, #d4a84b 0%, #e67e22 100%); }
+        .shop-product-image.bg-green {
+            background: linear-gradient(145deg, #5a8f69 0%, #2d5a3d 100%);
+        }
 
-        .product-icon svg {
-            width: 80px;
-            height: 80px;
-            stroke: rgba(255, 255, 255, 0.9);
+        .shop-product-image.bg-brown {
+            background: linear-gradient(145deg, #a68a5b 0%, #6d5639 100%);
+        }
+
+        .shop-product-image.bg-pink {
+            background: linear-gradient(145deg, #e6a898 0%, #c4785c 100%);
+        }
+
+        .shop-product-image.bg-teal {
+            background: linear-gradient(145deg, #6aaa9a 0%, #3d7a6a 100%);
+        }
+
+        .shop-product-image.bg-orange {
+            background: linear-gradient(145deg, #e6a84b 0%, #c4785c 100%);
+        }
+
+        .shop-product-image.bg-purple {
+            background: linear-gradient(145deg, #9b7fc4 0%, #6a5a8e 100%);
+        }
+
+        .shop-product-image.bg-red {
+            background: linear-gradient(145deg, #d66a6a 0%, #b54545 100%);
+        }
+
+        .shop-product-image.bg-yellow {
+            background: linear-gradient(145deg, #e6c06a 0%, #d4a84b 100%);
+        }
+
+        .shop-product-icon {
+            transition: transform 0.4s ease;
+        }
+
+        .shop-product-card:hover .shop-product-icon {
+            transform: scale(1.1);
+        }
+
+        .shop-product-icon svg {
+            width: 70px;
+            height: 70px;
+            stroke: rgba(255, 255, 255, 0.95);
             fill: none;
             stroke-width: 1.5;
         }
 
-        .product-badge {
+        .shop-product-badge {
             position: absolute;
             top: 1rem;
             left: 1rem;
-            padding: 0.35rem 0.85rem;
+            padding: 0.4rem 0.9rem;
             border-radius: var(--radius-full);
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.7rem;
+            font-weight: 700;
             color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .badge-bestseller { background: var(--color-accent); }
-        .badge-new { background: var(--color-primary); }
-        .badge-sale { background: #c45c5c; }
+        .shop-badge-bestseller {
+            background: var(--color-accent);
+        }
 
-        .wishlist-btn {
+        .shop-badge-new {
+            background: var(--color-primary);
+        }
+
+        .shop-badge-sale {
+            background: #e74c3c;
+        }
+
+        .shop-wishlist-btn {
             position: absolute;
             top: 1rem;
             right: 1rem;
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 255, 255, 0.9);
+            width: 38px;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.95);
             border: none;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: var(--transition-base);
+            transition: all 0.3s ease;
         }
 
-        .wishlist-btn:hover {
+        .shop-wishlist-btn:hover {
             background: white;
             transform: scale(1.1);
         }
 
-        .wishlist-btn svg {
+        .shop-wishlist-btn svg {
             width: 18px;
             height: 18px;
             stroke: var(--color-charcoal);
             fill: none;
             stroke-width: 2;
+            transition: all 0.3s ease;
         }
 
-        .wishlist-btn:hover svg {
-            stroke: #c45c5c;
+        .shop-wishlist-btn:hover svg {
+            stroke: #e74c3c;
         }
 
-        .product-content {
+        .shop-product-content {
             padding: 1.5rem;
         }
 
-        .product-category {
-            font-size: 0.75rem;
-            font-weight: 600;
+        .shop-product-category {
+            font-size: 0.7rem;
+            font-weight: 700;
             color: var(--color-primary);
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-bottom: 0.5rem;
         }
 
-        .product-title {
-            font-size: 1.15rem;
+        .shop-product-title {
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
             color: var(--color-charcoal);
+            transition: color 0.3s ease;
         }
 
-        .product-desc {
-            font-size: 0.9rem;
+        .shop-product-card:hover .shop-product-title {
+            color: var(--color-primary);
+        }
+
+        .shop-product-desc {
+            font-size: 0.875rem;
             color: var(--color-charcoal-light);
-            opacity: 0.8;
-            margin-bottom: 0.75rem;
             line-height: 1.5;
+            margin-bottom: 0.85rem;
         }
 
-        .product-meta {
+        .shop-product-meta {
             display: flex;
-            gap: 1rem;
-            font-size: 0.8rem;
+            gap: 0.75rem;
+            font-size: 0.75rem;
             color: var(--color-charcoal-light);
             margin-bottom: 1rem;
         }
 
-        .product-meta span {
+        .shop-product-meta span {
             display: flex;
             align-items: center;
             gap: 0.35rem;
+            background: var(--color-cream);
+            padding: 0.25rem 0.55rem;
+            border-radius: var(--radius-sm);
         }
 
-        .product-meta svg {
-            width: 14px;
-            height: 14px;
-            stroke: currentColor;
+        .shop-product-meta svg {
+            width: 13px;
+            height: 13px;
+            stroke: var(--color-primary);
             fill: none;
             stroke-width: 2;
         }
 
-        .product-footer {
+        .shop-product-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -366,26 +416,25 @@
             border-top: 1px solid rgba(45, 90, 61, 0.08);
         }
 
-        .product-price {
+        .shop-product-price {
             font-family: var(--font-display);
-            font-size: 1.35rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--color-primary);
         }
 
-        .product-price .original {
-            font-size: 0.9rem;
+        .shop-product-price .original {
+            font-size: 0.85rem;
             color: var(--color-charcoal-light);
-            opacity: 0.6;
             text-decoration: line-through;
             margin-left: 0.5rem;
             font-weight: 400;
         }
 
-        .btn-cart {
+        .shop-cart-btn {
             width: 44px;
             height: 44px;
-            background: var(--color-primary);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
             color: white;
             border: none;
             border-radius: 50%;
@@ -393,15 +442,16 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: var(--transition-base);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(45, 90, 61, 0.2);
         }
 
-        .btn-cart:hover {
-            background: var(--color-primary-dark);
+        .shop-cart-btn:hover {
             transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(45, 90, 61, 0.3);
         }
 
-        .btn-cart svg {
+        .shop-cart-btn svg {
             width: 20px;
             height: 20px;
             stroke: white;
@@ -410,7 +460,7 @@
         }
 
         /* Pagination */
-        .pagination {
+        .shop-pagination {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -456,17 +506,17 @@
 
         /* Responsive */
         @media (max-width: 1199px) {
-            .products-grid {
+            .shop-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 991px) {
-            .products-layout {
+            .shop-layout {
                 grid-template-columns: 1fr;
             }
 
-            .sidebar {
+            .shop-sidebar {
                 position: static;
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
@@ -476,14 +526,18 @@
             .filter-section {
                 margin-bottom: 0;
             }
+
+            .filter-section:last-child {
+                grid-column: 1 / -1;
+            }
         }
 
         @media (max-width: 767px) {
-            .sidebar {
+            .shop-sidebar {
                 grid-template-columns: 1fr;
             }
 
-            .products-grid {
+            .shop-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -506,7 +560,9 @@
         <div class="container">
             <nav class="breadcrumb">
                 <a href="/">Home</a>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6" />
+                </svg>
                 <span>Products</span>
             </nav>
             <h1>Shop Our <span class="text-gradient">Seeds</span></h1>
@@ -517,12 +573,14 @@
     <!-- Main Content -->
     <section class="section-lg">
         <div class="container">
-            <div class="products-layout">
+            <div class="shop-layout">
                 <!-- Sidebar Filters -->
-                <aside class="sidebar">
+                <aside class="shop-sidebar">
                     <div class="filter-section">
                         <h3 class="filter-title">
-                            <svg viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+                            <svg viewBox="0 0 24 24">
+                                <path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6" />
+                            </svg>
                             Categories
                         </h3>
                         <div class="filter-options">
@@ -556,7 +614,10 @@
 
                     <div class="filter-section">
                         <h3 class="filter-title">
-                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v6l4 2" />
+                            </svg>
                             Growing Season
                         </h3>
                         <div class="filter-options">
@@ -581,7 +642,10 @@
 
                     <div class="filter-section">
                         <h3 class="filter-title">
-                            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                            <svg viewBox="0 0 24 24">
+                                <line x1="12" y1="1" x2="12" y2="23" />
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                            </svg>
                             Price Range
                         </h3>
                         <div class="price-range">
@@ -593,7 +657,10 @@
 
                     <div class="filter-section">
                         <h3 class="filter-title">
-                            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                            <svg viewBox="0 0 24 24">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                <path d="M22 4L12 14.01l-3-3" />
+                            </svg>
                             Features
                         </h3>
                         <div class="filter-options">
@@ -620,7 +687,7 @@
                 </aside>
 
                 <!-- Products Area -->
-                <div class="products-area">
+                <div class="shop-products-area">
                     <div class="sort-bar">
                         <span class="results-count">Showing <strong>1-12</strong> of <strong>124</strong> products</span>
                         <div class="sort-options">
@@ -634,49 +701,361 @@
                             </select>
                             <div class="view-toggle">
                                 <button class="view-btn active">
-                                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <rect x="3" y="3" width="7" height="7" />
+                                        <rect x="14" y="3" width="7" height="7" />
+                                        <rect x="3" y="14" width="7" height="7" />
+                                        <rect x="14" y="14" width="7" height="7" />
+                                    </svg>
                                 </button>
                                 <button class="view-btn">
-                                    <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <line x1="3" y1="6" x2="21" y2="6" />
+                                        <line x1="3" y1="12" x2="21" y2="12" />
+                                        <line x1="3" y1="18" x2="21" y2="18" />
+                                    </svg>
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    <div class="products-grid">
-                        @include('partials.products.product-item', ['badge' => 'bestseller', 'color' => 'green', 'category' => 'Vegetables', 'title' => 'Heirloom Tomato Mix', 'description' => '5 heritage varieties including Brandywine, Cherokee Purple & more', 'days' => '70-85', 'cert' => 'Organic', 'price' => '12.99'])
+                    <div class="shop-grid">
+                        <!-- Product 1 -->
+                        <div class="shop-product-card">
+                            <div class="shop-product-image bg-green">
+                                <span class="shop-product-badge shop-badge-bestseller">Bestseller</span>
+                                <button class="shop-wishlist-btn" aria-label="Add to wishlist"><svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                    </svg></button>
+                                <div class="shop-product-icon"><svg viewBox="0 0 24 24">
+                                        <path d="M12 2C13.5 4 14 6.5 14 9c0 3-2 5.5-2 5.5s-2-2.5-2-5.5c0-2.5.5-5 2-7z" />
+                                    </svg></div>
+                            </div>
+                            <div class="shop-product-content">
+                                <span class="shop-product-category">Vegetables</span>
+                                <h4 class="shop-product-title">Heirloom Tomato Mix</h4>
+                                <p class="shop-product-desc">5 heritage varieties including Brandywine, Cherokee Purple &
+                                    more</p>
+                                <div class="shop-product-meta">
+                                    <span><svg viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <path d="M12 6v6l4 2" />
+                                        </svg>70-85 days</span>
+                                    <span><svg viewBox="0 0 24 24">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                            <path d="M22 4L12 14.01l-3-3" />
+                                        </svg>Organic</span>
+                                </div>
+                                <div class="shop-product-footer">
+                                    <span class="shop-product-price">$12.99</span>
+                                    <button class="shop-cart-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                                        </svg></button>
+                                </div>
+                            </div>
+                        </div>
 
-                        @include('partials.products.product-item', ['badge' => '', 'color' => 'brown', 'category' => 'Herbs', 'title' => 'Culinary Herb Garden', 'description' => 'Complete collection: Basil, Thyme, Oregano, Rosemary & Sage', 'days' => '30-60', 'cert' => 'Non-GMO', 'price' => '9.99'])
+                        <!-- Product 2 -->
+                        <div class="shop-product-card">
+                            <div class="shop-product-image bg-brown">
+                                <button class="shop-wishlist-btn" aria-label="Add to wishlist"><svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                    </svg></button>
+                                <div class="shop-product-icon"><svg viewBox="0 0 24 24">
+                                        <path d="M12 2C13.5 4 14 6.5 14 9c0 3-2 5.5-2 5.5s-2-2.5-2-5.5c0-2.5.5-5 2-7z" />
+                                    </svg></div>
+                            </div>
+                            <div class="shop-product-content">
+                                <span class="shop-product-category">Herbs</span>
+                                <h4 class="shop-product-title">Culinary Herb Garden</h4>
+                                <p class="shop-product-desc">Complete collection: Basil, Thyme, Oregano, Rosemary & Sage</p>
+                                <div class="shop-product-meta">
+                                    <span><svg viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <path d="M12 6v6l4 2" />
+                                        </svg>30-60 days</span>
+                                    <span><svg viewBox="0 0 24 24">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                            <path d="M22 4L12 14.01l-3-3" />
+                                        </svg>Non-GMO</span>
+                                </div>
+                                <div class="shop-product-footer">
+                                    <span class="shop-product-price">$9.99</span>
+                                    <button class="shop-cart-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                                        </svg></button>
+                                </div>
+                            </div>
+                        </div>
 
-                        @include('partials.products.product-item', ['badge' => 'new', 'color' => 'pink', 'category' => 'Flowers', 'title' => 'Wildflower Meadow Mix', 'description' => '20+ pollinator-friendly varieties for a stunning natural display', 'days' => '60-90', 'cert' => 'Heirloom', 'price' => '14.99'])
+                        <!-- Product 3 -->
+                        <div class="shop-product-card">
+                            <div class="shop-product-image bg-pink">
+                                <span class="shop-product-badge shop-badge-new">New</span>
+                                <button class="shop-wishlist-btn" aria-label="Add to wishlist"><svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                    </svg></button>
+                                <div class="shop-product-icon"><svg viewBox="0 0 24 24">
+                                        <path d="M12 2C13.5 4 14 6.5 14 9c0 3-2 5.5-2 5.5s-2-2.5-2-5.5c0-2.5.5-5 2-7z" />
+                                    </svg></div>
+                            </div>
+                            <div class="shop-product-content">
+                                <span class="shop-product-category">Flowers</span>
+                                <h4 class="shop-product-title">Wildflower Meadow Mix</h4>
+                                <p class="shop-product-desc">20+ pollinator-friendly varieties for a stunning natural
+                                    display</p>
+                                <div class="shop-product-meta">
+                                    <span><svg viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <path d="M12 6v6l4 2" />
+                                        </svg>60-90 days</span>
+                                    <span><svg viewBox="0 0 24 24">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                            <path d="M22 4L12 14.01l-3-3" />
+                                        </svg>Heirloom</span>
+                                </div>
+                                <div class="shop-product-footer">
+                                    <span class="shop-product-price">$14.99</span>
+                                    <button class="shop-cart-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                                        </svg></button>
+                                </div>
+                            </div>
+                        </div>
 
-                        @include('partials.products.product-item', ['badge' => '', 'color' => 'teal', 'category' => 'Vegetables', 'title' => 'Salad Greens Mix', 'description' => 'Lettuce, Arugula, Spinach & Microgreens for fresh salads', 'days' => '21-45', 'cert' => 'Organic', 'price' => '8.99'])
+                        <!-- Product 4 -->
+                        <div class="shop-product-card">
+                            <div class="shop-product-image bg-teal">
+                                <button class="shop-wishlist-btn" aria-label="Add to wishlist"><svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                    </svg></button>
+                                <div class="shop-product-icon"><svg viewBox="0 0 24 24">
+                                        <path d="M12 2C13.5 4 14 6.5 14 9c0 3-2 5.5-2 5.5s-2-2.5-2-5.5c0-2.5.5-5 2-7z" />
+                                    </svg></div>
+                            </div>
+                            <div class="shop-product-content">
+                                <span class="shop-product-category">Vegetables</span>
+                                <h4 class="shop-product-title">Salad Greens Mix</h4>
+                                <p class="shop-product-desc">Lettuce, Arugula, Spinach & Microgreens for fresh salads</p>
+                                <div class="shop-product-meta">
+                                    <span><svg viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <path d="M12 6v6l4 2" />
+                                        </svg>21-45 days</span>
+                                    <span><svg viewBox="0 0 24 24">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                            <path d="M22 4L12 14.01l-3-3" />
+                                        </svg>Organic</span>
+                                </div>
+                                <div class="shop-product-footer">
+                                    <span class="shop-product-price">$8.99</span>
+                                    <button class="shop-cart-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                                        </svg></button>
+                                </div>
+                            </div>
+                        </div>
 
-                        @include('partials.products.product-item', ['badge' => 'sale', 'color' => 'orange', 'category' => 'Vegetables', 'title' => 'Rainbow Carrot Mix', 'description' => 'Purple, orange, yellow & white heirloom carrot varieties', 'days' => '60-80', 'cert' => 'Heirloom', 'price' => '7.99', 'original_price' => '9.99'])
+                        <!-- Product 5 -->
+                        <div class="shop-product-card">
+                            <div class="shop-product-image bg-orange">
+                                <span class="shop-product-badge shop-badge-sale">20% Off</span>
+                                <button class="shop-wishlist-btn" aria-label="Add to wishlist"><svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                    </svg></button>
+                                <div class="shop-product-icon"><svg viewBox="0 0 24 24">
+                                        <path d="M12 2C13.5 4 14 6.5 14 9c0 3-2 5.5-2 5.5s-2-2.5-2-5.5c0-2.5.5-5 2-7z" />
+                                    </svg></div>
+                            </div>
+                            <div class="shop-product-content">
+                                <span class="shop-product-category">Vegetables</span>
+                                <h4 class="shop-product-title">Rainbow Carrot Mix</h4>
+                                <p class="shop-product-desc">Purple, orange, yellow & white heirloom carrot varieties</p>
+                                <div class="shop-product-meta">
+                                    <span><svg viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <path d="M12 6v6l4 2" />
+                                        </svg>60-80 days</span>
+                                    <span><svg viewBox="0 0 24 24">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                            <path d="M22 4L12 14.01l-3-3" />
+                                        </svg>Heirloom</span>
+                                </div>
+                                <div class="shop-product-footer">
+                                    <span class="shop-product-price">$7.99 <span class="original">$9.99</span></span>
+                                    <button class="shop-cart-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                                        </svg></button>
+                                </div>
+                            </div>
+                        </div>
 
-                        @include('partials.products.product-item', ['badge' => '', 'color' => 'purple', 'category' => 'Vegetables', 'title' => 'Purple Haze Collection', 'description' => 'Eggplant, Purple Beans, Kohlrabi & Purple Cabbage', 'days' => '50-80', 'cert' => 'Non-GMO', 'price' => '15.99'])
+                        <!-- Product 6 -->
+                        <div class="shop-product-card">
+                            <div class="shop-product-image bg-purple">
+                                <button class="shop-wishlist-btn" aria-label="Add to wishlist"><svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                    </svg></button>
+                                <div class="shop-product-icon"><svg viewBox="0 0 24 24">
+                                        <path d="M12 2C13.5 4 14 6.5 14 9c0 3-2 5.5-2 5.5s-2-2.5-2-5.5c0-2.5.5-5 2-7z" />
+                                    </svg></div>
+                            </div>
+                            <div class="shop-product-content">
+                                <span class="shop-product-category">Vegetables</span>
+                                <h4 class="shop-product-title">Purple Haze Collection</h4>
+                                <p class="shop-product-desc">Eggplant, Purple Beans, Kohlrabi & Purple Cabbage</p>
+                                <div class="shop-product-meta">
+                                    <span><svg viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <path d="M12 6v6l4 2" />
+                                        </svg>50-80 days</span>
+                                    <span><svg viewBox="0 0 24 24">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                            <path d="M22 4L12 14.01l-3-3" />
+                                        </svg>Non-GMO</span>
+                                </div>
+                                <div class="shop-product-footer">
+                                    <span class="shop-product-price">$15.99</span>
+                                    <button class="shop-cart-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                                        </svg></button>
+                                </div>
+                            </div>
+                        </div>
 
-                        @include('partials.products.product-item', ['badge' => '', 'color' => 'red', 'category' => 'Vegetables', 'title' => 'Hot Pepper Variety', 'description' => 'Jalapeño, Habanero, Cayenne & Ghost Pepper mix', 'days' => '75-100', 'cert' => 'Organic', 'price' => '11.99'])
+                        <!-- Product 7 -->
+                        <div class="shop-product-card">
+                            <div class="shop-product-image bg-red">
+                                <button class="shop-wishlist-btn" aria-label="Add to wishlist"><svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                    </svg></button>
+                                <div class="shop-product-icon"><svg viewBox="0 0 24 24">
+                                        <path d="M12 2C13.5 4 14 6.5 14 9c0 3-2 5.5-2 5.5s-2-2.5-2-5.5c0-2.5.5-5 2-7z" />
+                                    </svg></div>
+                            </div>
+                            <div class="shop-product-content">
+                                <span class="shop-product-category">Vegetables</span>
+                                <h4 class="shop-product-title">Hot Pepper Variety</h4>
+                                <p class="shop-product-desc">Jalapeño, Habanero, Cayenne & Ghost Pepper mix</p>
+                                <div class="shop-product-meta">
+                                    <span><svg viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <path d="M12 6v6l4 2" />
+                                        </svg>75-100 days</span>
+                                    <span><svg viewBox="0 0 24 24">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                            <path d="M22 4L12 14.01l-3-3" />
+                                        </svg>Organic</span>
+                                </div>
+                                <div class="shop-product-footer">
+                                    <span class="shop-product-price">$11.99</span>
+                                    <button class="shop-cart-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                                        </svg></button>
+                                </div>
+                            </div>
+                        </div>
 
-                        @include('partials.products.product-item', ['badge' => 'new', 'color' => 'yellow', 'category' => 'Flowers', 'title' => 'Sunflower Collection', 'description' => 'Giant, Dwarf, Red & Multi-colored sunflower varieties', 'days' => '55-75', 'cert' => 'Non-GMO', 'price' => '10.99'])
+                        <!-- Product 8 -->
+                        <div class="shop-product-card">
+                            <div class="shop-product-image bg-yellow">
+                                <span class="shop-product-badge shop-badge-new">New</span>
+                                <button class="shop-wishlist-btn" aria-label="Add to wishlist"><svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                    </svg></button>
+                                <div class="shop-product-icon"><svg viewBox="0 0 24 24">
+                                        <path d="M12 2C13.5 4 14 6.5 14 9c0 3-2 5.5-2 5.5s-2-2.5-2-5.5c0-2.5.5-5 2-7z" />
+                                    </svg></div>
+                            </div>
+                            <div class="shop-product-content">
+                                <span class="shop-product-category">Flowers</span>
+                                <h4 class="shop-product-title">Sunflower Collection</h4>
+                                <p class="shop-product-desc">Giant, Dwarf, Red & Multi-colored sunflower varieties</p>
+                                <div class="shop-product-meta">
+                                    <span><svg viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <path d="M12 6v6l4 2" />
+                                        </svg>55-75 days</span>
+                                    <span><svg viewBox="0 0 24 24">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                            <path d="M22 4L12 14.01l-3-3" />
+                                        </svg>Non-GMO</span>
+                                </div>
+                                <div class="shop-product-footer">
+                                    <span class="shop-product-price">$10.99</span>
+                                    <button class="shop-cart-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                                        </svg></button>
+                                </div>
+                            </div>
+                        </div>
 
-                        @include('partials.products.product-item', ['badge' => '', 'color' => 'green', 'category' => 'Vegetables', 'title' => 'Cucumber Variety Pack', 'description' => 'Pickling, Slicing & Armenian cucumber seeds', 'days' => '50-70', 'cert' => 'Organic', 'price' => '9.49'])
+                        <!-- Product 9 -->
+                        <div class="shop-product-card">
+                            <div class="shop-product-image bg-green">
+                                <button class="shop-wishlist-btn" aria-label="Add to wishlist"><svg viewBox="0 0 24 24">
+                                        <path
+                                            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                    </svg></button>
+                                <div class="shop-product-icon"><svg viewBox="0 0 24 24">
+                                        <path d="M12 2C13.5 4 14 6.5 14 9c0 3-2 5.5-2 5.5s-2-2.5-2-5.5c0-2.5.5-5 2-7z" />
+                                    </svg></div>
+                            </div>
+                            <div class="shop-product-content">
+                                <span class="shop-product-category">Vegetables</span>
+                                <h4 class="shop-product-title">Cucumber Variety Pack</h4>
+                                <p class="shop-product-desc">Pickling, Slicing & Armenian cucumber seeds</p>
+                                <div class="shop-product-meta">
+                                    <span><svg viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="10" />
+                                            <path d="M12 6v6l4 2" />
+                                        </svg>50-70 days</span>
+                                    <span><svg viewBox="0 0 24 24">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                            <path d="M22 4L12 14.01l-3-3" />
+                                        </svg>Organic</span>
+                                </div>
+                                <div class="shop-product-footer">
+                                    <span class="shop-product-price">$9.49</span>
+                                    <button class="shop-cart-btn" aria-label="Add to cart"><svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M9 20a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                                        </svg></button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Pagination -->
-                    <div class="pagination">
-                        <a href="#" class="pagination-btn">
-                            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-                        </a>
+                    <div class="shop-pagination">
+                        <a href="#" class="pagination-btn"><svg viewBox="0 0 24 24">
+                                <path d="M15 18l-6-6 6-6" />
+                            </svg></a>
                         <a href="#" class="pagination-btn active">1</a>
                         <a href="#" class="pagination-btn">2</a>
                         <a href="#" class="pagination-btn">3</a>
                         <a href="#" class="pagination-btn">4</a>
                         <a href="#" class="pagination-btn">...</a>
                         <a href="#" class="pagination-btn">11</a>
-                        <a href="#" class="pagination-btn">
-                            <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-                        </a>
+                        <a href="#" class="pagination-btn"><svg viewBox="0 0 24 24">
+                                <path d="M9 18l6-6-6-6" />
+                            </svg></a>
                     </div>
                 </div>
             </div>
